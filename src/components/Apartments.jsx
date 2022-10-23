@@ -1,32 +1,21 @@
 import React from "react";
 import { Apartments as Homes } from "../utils/Apartments";
-import { AiFillStar } from "react-icons/ai";
-export default function Apartments({ category }) {
-  const [apartments, setApartments] = React.useState(
-    Homes.filter((apt) => apt.category === category)
-  );
-  React.useEffect(() => {
-    async function fetchData() {
-      await setTimeout(() => {
-        setApartments(Homes.filter((apt) => apt.category === category));
-      }, 2000);
-      setApartments([]);
-    }
-    fetchData();
-  }, [category]);
+
+import { AiFillHeart, AiFillStar, AiOutlineHeart } from "react-icons/ai";
+export default function Apartments({ apartments, like, unlike }) {
   return (
-    <div className="px-8 mt-5">
+    <div className="px-8 mt-5 mb-20">
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {apartments.length
           ? apartments?.map((apt, i) => (
               <div
-                className="flex-col w-full transition-all duration-500 transform rounded-t-xl hover:scale-105 "
+                className="flex-col w-full transition-all duration-500 transform rounded-t-xl"
                 key={i}
               >
                 <img
                   src={apt.url}
                   alt=""
-                  className="object-cover object-center w-full shadow rounded-xl h-72"
+                  className="object-cover object-center w-full transition-all duration-500 transform shadow rounded-xl h-72 hover:scale-105"
                 />
                 <div className="flex justify-between w-full mt-3">
                   <div className="font-base">Lekki, Nigeria</div>
@@ -41,9 +30,17 @@ export default function Apartments({ category }) {
                 <p className="text-sm text-gray-500 font-extralight">
                   Oct 18 - 24
                 </p>
-                <p className="mt-1 text-sm">
+                <div className="flex items-center justify-between mt-1">
+                <p className="text-sm">
                   <span className="font-bold"> $50 </span> night
                 </p>
+                {
+                  apt.liked ?
+                  <AiFillHeart className="text-red-500 transition-all duration-500 transform cursor-pointer hover:scale-105" onClick={()=>unlike(apt.name)} />
+                  :
+                  <AiOutlineHeart className="text-red-500 transition-all duration-500 transform cursor-pointer hover:scale-105" onClick={()=>like(apt.name)} />
+                }
+                </div>
               </div>
             ))
           : Homes?.map((home, i) => (

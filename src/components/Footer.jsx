@@ -1,9 +1,10 @@
 import React from "react";
-import { BiChevronUp, BiCopyright, BiDollar, BiGlobe } from "react-icons/bi";
+import { BiChevronUp, BiCopyright, BiDollar, BiGlobe, BiHeart, BiSearch, BiUserCircle } from "react-icons/bi";
 
 export default function Footer() {
   return (
-    <div className="fixed bottom-0 z-10 flex items-center justify-between w-full px-8 py-4 bg-white border-t">
+    <>
+    <div className="fixed bottom-0 z-10 items-center justify-between hidden w-full px-8 py-4 bg-white border-t lg:flex">
       <div className="flex items-center">
         <div className="flex items-center text-sm font-light">
           <BiCopyright />
@@ -33,5 +34,20 @@ export default function Footer() {
         </div>
       </div>
     </div>
+    <div className="fixed bottom-0 z-10 flex items-center justify-center w-full px-8 py-4 bg-white border-t lg:hidden">
+      <div className="flex flex-col items-center">
+        <BiSearch className="w-6 h-6 text-red-600" />
+        <p className="text-xs text-center text-[10px]">Explore</p>
+      </div>
+      <div className="flex flex-col items-center mx-4">
+        <BiHeart className="w-6 h-6 text-gray-600" />
+        <p className="text-xs text-center text-[10px]">Wishlist</p>
+      </div>
+      <div className="flex flex-col items-center">
+        <BiUserCircle className="w-6 h-6 text-gray-600" />
+        <p className="text-xs text-center text-[10px]">Log In</p>
+      </div>
+    </div>
+    </>
   );
 }
